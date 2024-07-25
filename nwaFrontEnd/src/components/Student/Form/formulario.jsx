@@ -24,16 +24,16 @@ const Formulario = () => {
         event.preventDefault();
         const formattedData = {
             ...formData,
-            fecha_nac: new Date(formData.fecha_nac).toISOString().split('T')[0] // Convertir a 'YYYY-MM-DD'
+            fecha_nac: new Date(formData.fecha_nac).toISOString().split('T')[0]
         };
-        console.log(formattedData); // Verifica que los datos se envíen correctamente
+        console.log(formattedData);
         try {
             const response = await fetch('http://localhost:3000/students', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(formattedData) // Usar formattedData aquí
+                body: JSON.stringify(formattedData)
             });
 
             if (!response.ok) {

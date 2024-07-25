@@ -1,21 +1,17 @@
-import { useState } from 'react'
-import StudentList from './components/Student/StudentList'
-import Menu from './components/menu/menu';
+import { ReactDOM } from 'react'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css'
-import Formulario from './components/Student/Form/formulario';
+import Home from './pages/Home'
+import Layout from './pages/Layout';
 
-function App() {
+export default function App() {
   return (
-    <div className="flex">
-      <aside className="w-64">
-        <Menu />
-      </aside>
-      <main className="flex-1 p-4">
-        <StudentList />
-      </main>
-      <Formulario />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route imdex element={<Home />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
-
-export default App
