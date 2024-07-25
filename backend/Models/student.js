@@ -10,20 +10,20 @@ const config = {
 
 const connection = await mysql.createConnection(config);
 
-export class StudentModel{
+export class StudentModel {
 
  static async getAll({ page = 1, limit = 10 }) {
         const offset = (page - 1) * limit;
-        console.log('Page:', page, 'Limit:', limit, 'Offset:', offset); // Log de los valores
+        console.log('Page:', page, 'Limit:', limit, 'Offset:', offset);
 
-        // Obtener los alumnos con paginación
+        
         const [students] = await connection.query(
-            `SELECT id, alumn_DNI, nombre, apellido, fecha_nac, año 
+            `SELECT id, alumn_DNI, nombre, apellido, fecha_nac
             FROM students 
             LIMIT ? OFFSET ?`, [limit, offset]
         );
 
-        // Contar el total de alumnos
+        
         const [[{ total }]] = await connection.query(
             `SELECT COUNT(*) as total FROM students`
         );

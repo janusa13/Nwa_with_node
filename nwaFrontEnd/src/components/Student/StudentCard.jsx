@@ -1,10 +1,10 @@
 import React from "react";
-import "./StudentCard.css";
+
 
 const StudentCard = ({ alumno }) => {
     return (
-        <div className="student-card">
-            <p>DNI: {alumno.alumn_DNI}</p>
+        <div className="p-4 border rounded-lg shadow-md bg-grey">
+            <p className="text-lg font-semibold">DNI: {alumno.alumn_DNI}</p>
             <p>Nombre: {alumno.nombre}</p>
             <p>Apellido: {alumno.apellido}</p>
             <p>Asistencias: {alumno.asistencias}</p>

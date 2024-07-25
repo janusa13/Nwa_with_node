@@ -1,8 +1,13 @@
 import { Router } from "express";
 import { StudentController } from "../Controllers/student.js";
 
-export const studentRouter = Router()
+export const createStudentRouter = ({ studentModel }) => {
+    const studentRouter = Router();
+    const studentController = new StudentController({ studentModel });
 
-studentRouter.get('/', StudentController.getAll);
-studentRouter.get('/:id',StudentController.getById);
-studentRouter.post('/',StudentController.create);
+    studentRouter.get('/', studentController.getAll);
+    studentRouter.get('/:id', studentController.getById);
+    studentRouter.post('/', studentController.create);
+
+    return studentRouter;
+};
