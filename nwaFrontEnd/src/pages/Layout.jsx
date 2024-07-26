@@ -3,12 +3,13 @@ import Menu from "../components/menu/menu";
 
 const Layout = () => {
     return (
-        <>
-            <aside className="w-64">
-                <Menu />
-            </aside>
-            <Outlet />
-        </>
+        <div className="flex">
+            <Menu className=" bg-gray-100 " />
+            <aside />
+            <div className="flex-1 p-4">
+                <Outlet />
+            </div>
+        </div>
     )
 }
 

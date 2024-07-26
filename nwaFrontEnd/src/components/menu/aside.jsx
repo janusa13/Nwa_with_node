@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 
 const Aside = () => {
@@ -15,24 +16,22 @@ const Aside = () => {
                     {[
                         {
                             icon: "calendar-alt",
-                            text: "Agenda",
-                            items: ["Gestion de citas", "Polizas"]
+                            text: "Registro",
+                            items: [{ name: "Registrar Alumno", path: "/registerStudent" }]
                         },
                         {
                             icon: "money-bill-wave",
-                            text: "Contabilidad",
-                            items: ["Tratamientos", "Gastos", "Facturas"]
+                            text: "Clases",
+                            items: [{ name: "Ver clases", path: "#" },
+                            { name: "Registrar Clases", path: "#" }]
                         },
                         {
                             icon: "chart-bar",
                             text: "Informes",
-                            items: ["Presupuestos", "Informe médico"]
+                            items: [{ name: "Informes de Alumnos", path: "#" },
+                            { name: "Informes docentes", path: "#" }]
                         },
-                        {
-                            icon: "file-alt",
-                            text: "Documentación",
-                            items: ["Firmas pendientes", "Documentos"]
-                        }
+
                     ].map((option, index) => (
                         <li key={index} className="opcion-con-desplegable">
                             <div
@@ -48,10 +47,9 @@ const Aside = () => {
                             <ul className={`desplegable ml-4 ${openDropdown === index ? "" : "hidden"}`}>
                                 {option.items.map((item, itemIndex) => (
                                     <li key={itemIndex}>
-                                        <a href="#" className="block p-2 hover:bg-gray-700 flex items-center">
-                                            <i className="fas fa-chevron-right mr-2 text-xs"></i>
-                                            {item}
-                                        </a>
+                                        <Link to={item.path} className="block p-2 hover:bg-gray-700 flex items-center" >
+                                            <i className="fas fa-chevron-down text-xs">Agregar Alumno</i>
+                                        </Link>
                                     </li>
                                 ))}
                             </ul>

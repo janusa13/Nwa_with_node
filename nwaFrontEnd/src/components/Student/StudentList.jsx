@@ -26,12 +26,16 @@ const StudentList = () => {
         fetchAlumnos();
     }, [currentPage]);
 
+    const handleDelete = (id) => {
+        setAlumnos((prevAlumnos) => prevAlumnos.filter((alumno) => alumno.id !== id));
+    };
+
     return (
         <div>
             <h1>Listado de Alumnos</h1>
             <div className="alumnos-list">
                 {alumnos.map(alumno => (
-                    <StudentCard key={alumno.id} alumno={alumno} />
+                    <StudentCard key={alumno.id} alumno={alumno} onDelete={handleDelete} />
                 ))}
             </div>
             <div>

@@ -64,5 +64,13 @@ export class StudentModel {
         }
     }
 
+    static async delete({id}){
+        const [result] = await connection.query(
+            `DELETE FROM students WHERE id = ?`,
+            [id]
+        );
+        return result
+    }
+
     
 }

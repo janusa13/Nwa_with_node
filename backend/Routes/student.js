@@ -8,6 +8,6 @@ export const createStudentRouter = ({ studentModel }) => {
     studentRouter.get('/', studentController.getAll);
     studentRouter.get('/:id', studentController.getById);
     studentRouter.post('/', studentController.create);
-
+    studentRouter.delete('/:id', studentController.delete);
     return studentRouter;
 };
