@@ -72,5 +72,4 @@ export class StudentModel {
         return result
     }
 
-    
 }
