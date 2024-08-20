@@ -2,9 +2,9 @@ import express from 'express';
 import { corsMiddleware } from './Middlewares/cors.js';
 import {createStudentRouter} from './Routes/student.js';
 import { createUserRouter } from './Routes/user.js';
-import { UsertModel } from './Models/user.js';
 
-export const createApp = ({studentModel}) => {
+
+export const createApp = ({studentModel, userModel}) => {
     const app = express()
 
     app.disable('x-powered-by')
@@ -13,11 +13,13 @@ export const createApp = ({studentModel}) => {
 
     app.use('/students', createStudentRouter({studentModel}));
 
-    app.use('/users', createUserRouter({UsertModel}));
+    app.use('/users', createUserRouter({userModel}));
 
     const PORT = process.env.PORT ?? 3000
 
     app.listen(PORT, ()=>{
         console.log(`Server listening on port http://localhost:${PORT}`)
     })
+
+    return app;
 }

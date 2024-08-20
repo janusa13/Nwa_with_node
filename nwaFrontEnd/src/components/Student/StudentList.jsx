@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import StudentCard from "./StudentCard";
+import axios from "axios";
 
 const StudentList = () => {
     const [alumnos, setAlumnos] = useState([]);
@@ -9,14 +10,17 @@ const StudentList = () => {
 
     const fetchAlumnos = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/students?page=${currentPage}&limit=${itemsPerPage}`);
-            const data = await response.json();
-            if (response.ok) {
-                setAlumnos(data.alumnos);
-                setTotalPages(data.totalPages);
-            } else {
-                console.error('Error en la respuesta:', data.error);
-            }
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`http://localhost:3000/students?page=${currentPage}&limit=${itemsPerPage}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            const data = response.data;
+
+            setAlumnos(data.alumnos);
+            setTotalPages(data.totalPages);
         } catch (error) {
             console.error('Error en el fetch de Students:', error);
         }
